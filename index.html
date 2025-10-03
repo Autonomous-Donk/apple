@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple 产品全景 (2025-2026)</title>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --blur-intensity: blur(12px);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2d1a36);
+            color: #f5f5f7;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 液态玻璃背景效果 */
+        .liquid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .glass-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(120, 120, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(50px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bubble-1 { width: 400px; height: 400px; top: 10%; left: 5%; animation-delay: 0s; }
+        .bubble-2 { width: 500px; height: 500px; top: 50%; right: 5%; animation-delay: -7s; }
+        .bubble-3 { width: 300px; height: 300px; bottom: 10%; left: 20%; animation-delay: -14s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+            33% { transform: translateY(-30px) scale(1.05) rotate(5deg); }
+            66% { transform: translateY(15px) scale(0.95) rotate(-5deg); }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 60px 30px;
+            background: var(--glass-bg);
+            border-radius: 28px;
+            margin-bottom: 40px;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 1s ease;
+        }
+
+        header:hover:before {
+            left: 100%;
+        }
+
+        header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, #a1a1a6, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 6s infinite linear;
+            font-weight: 700;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.85;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .year-badge {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 搜索框 */
+        .search-box {
+            max-width: 550px;
+            margin: 25px auto 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 55px 16px 24px;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.07);
+            color: white;
+            font-size: 1.05rem;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 25px rgba(78, 205, 196, 0.25);
+            transform: scale(1.02);
+        }
+
+        .search-input::placeholder {
+            color: #b0b0b5;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4ECDC4;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: var(--transition-smooth);
+            padding: 5px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.2);
+            color: #FF6B6B;
+        }
+
+        /* 控制栏 */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 35px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: #f5f5f7;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            backdrop-filter: var(--blur-intensity);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: rgba(0, 122, 255, 0.25);
+            border: 1px solid rgba(0, 122, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .view-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: #f5f5f7;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            backdrop-filter: var(--blur-intensity);
+            font-size: 0.9rem;
+        }
+
+        .view-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* 产品网格 */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-intensity);
+            border-radius: 24px;
+            padding: 30px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        .product-card.latest {
+            border: 1px solid rgba(78, 205, 196, 0.4);
+            box-shadow: 0 0 35px rgba(78, 205, 196, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .product-icon {
+            font-size: 3.2rem;
+            margin-right: 18px;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.25));
+        }
+
+        .product-badge {
+            color: white;
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .latest-badge {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            position: absolute;
+            top: -8px;
+            right: 25px;
+            padding: 6px 18px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            background: linear-gradient(45deg, #fff, #e1e1e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-meta {
+            color: #b0b0b5;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .product-desc {
+            line-height: 1.7;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .product-specs {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid var(--glass-border);
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .spec-value {
+            color: #4ECDC4;
+            font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4CD964;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: #8e8e93;
+            cursor: pointer;
+            font-size: 1.4rem;
+            transition: var(--transition-smooth);
+            backdrop-filter: var(--blur-intensity);
+            padding: 5px;
+        }
+
+        .favorite-btn.active, .favorite-btn:hover {
+            color: #FF3B30;
+            transform: scale(1.3);
+        }
+
+        /* 人性化功能面板 */
+        .user-prefs {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 18px;
+            border-radius: 20px;
+            backdrop-filter: var(--blur-intensity);
+            z-index: 1000;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .pref-btn {
+            background: linear-gradient(45deg, #007AFF, #5856D6);
+            border: none;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 6px 0;
+            display: block;
+            width: 100%;
+            transition: var(--transition-smooth);
+            backdrop-filter: var(--blur-intensity);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .pref-btn:hover {
+            background: linear-gradient(45deg, #0056D6, #4A48CC);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 新闻区域 */
+        .news-section {
+            background: var(--glass-bg);
+            padding: 35px;
+            border-radius: 24px;
+            margin: 50px 0;
+            backdrop-filter: var(--blur-intensity);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+
+        .news-section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .news-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #4ECDC4;
+            font-weight: 600;
+        }
+
+        .rumor-note {
+            font-size: 0.85rem;
+            color: #FF6B6B;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1100px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .categories {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .product-card {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.7s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- 液态玻璃背景 -->
+    <div class="liquid-background">
+        <div class="glass-bubble bubble-1"></div>
+        <div class="glass-bubble bubble-2"></div>
+        <div class="glass-bubble bubble-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="year-badge">📅 实时更新至 2025年10月 含 iPhone 17 系列 & M5/M6 MacBook Pro 路线图</div>
+            <h1>🍎 Apple 产品全景</h1>
+            <p class="subtitle">探索 Apple 的创新历程，从已发布的 iPhone 17 到未来的 M6 MacBook Pro，一览无余。</p>
+
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="搜索产品名称、型号、芯片或特性..." id="searchInput">
+                <button class="search-btn">🔍</button>
+            </div>
+        </header>
+
+        <!-- 最新消息区域 -->
+        <div class="news-section">
+            <div class="news-title">🎉 iPhone 17 系列已正式发布</div>
+            <p>Apple 已于2025年9月正式发布 iPhone 17 系列。该系列包括 iPhone 17, iPhone 17 Air, iPhone 17 Pro 和 iPhone 17 Pro Max，全系搭载 A19 芯片和创新的 Center Stage 前置摄像头。<cite>[1][5][9]</cite></p>
+        </div>
+
+        <div class="controls">
+            <div class="categories">
+                <button class="category-btn active" onclick="filterProducts('all')">全部产品</button>
+                <button class="category-btn" onclick="filterProducts('iPhone')">📱 iPhone</button>
+                <button class="category-btn" onclick="filterProducts('MacBook')">💻 MacBook</button>
+                <button class="category-btn" onclick="filterProducts('Mac')">🖥️ 其他 Mac</button>
+                <button class="category-btn" onclick="filterProducts('Watch')">⌚ Watch</button>
+                <button class="category-btn" onclick="filterProducts('AirPods')">🎧 AirPods</button>
+                <button class="category-btn" onclick="showLatest()">🆕 最新发布</button>
+                <button class="category-btn" onclick="showUpcoming()">🔮 即将到来</button>
+            </div>
+
+            <div class="view-controls">
+                <button class="view-btn" onclick="sortProducts('year')">按年份排序</button>
+                <button class="view-btn" onclick="sortProducts('name')">按名称排序</button>
+                <button class="view-btn" onclick="showFavorites()">❤️ 我的收藏</button>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- 产品卡片通过JavaScript动态生成 -->
+        </div>
+    </div>
+
+    <!-- 人性化功能面板 -->
+    <div class="user-prefs">
+        <button class="pref-btn" onclick="toggleDarkMode()">🌙 暗黑模式</button>
+        <button class="pref-btn" onclick="resetFavorites()">🔄 重置收藏</button>
+        <button class="pref-btn" onclick="exportData()">📤 导出数据</button>
+        <button class="pref-btn" onclick="showOnlyLatest()">⭐ 只看最新</button>
+    </div>
+
+    <script>
+        // 完整的产品数据 - 包含2025年最新产品及未来路线图
+        const products = [
+            // ====== iPhone 17 系列 - 已发布 ======
+            {
+                id: 1,
+                name: "iPhone 17",
+                category: "iPhone",
+                generation: 17,
+                variant: "标准版",
+                year: 2025,
+                status: "已发布",
+                price: "NT$29,900起",
+                description: "配备创新的 Center Stage 前置相机，无需旋转手机即可拍摄横屏自拍。搭载 6.3 英寸 Super Retina XDR 显示屏与 A19 芯片。<cite>[1][9]</cite>",
+                specs: {
+                    "芯片": "A19",
+                    "显示屏": "6.3英寸 Super Retina XDR (ProMotion)",
+                    "前置相机": "Center Stage (最高1800万像素)",
+                    "后置相机": "4800万像素双融合系统",
+                    "存储": "256GB / 512GB",
+                    "正面玻璃": "超瓷晶盾 2 (抗刮能力提升3倍)<cite>[1]</cite>"
+                },
+                icon: "📱",
+                isNew: true,
+                isLatest: true
+            },
+            {
+                id: 2,
+                name: "iPhone 17 Air",
+                category: "iPhone",
+                generation: 17,
+                variant: "Air",
+                year: 2025,
+                status: "已发布",
+                price: "价格待定",
+                description: "主打超薄设计，采用超导铝合金中框，散热系数较前代提升80%。<cite>[3]</cite>",
+                specs: {
+                    "芯片": "A19",
+                    "设计": "超薄设计",
+                    "中框材质": "超导铝合金",
+                    "散热提升": "较前代提升80%<cite>[3]</cite>",
+                    "电池技术": "新型高硅含量负极材料<cite>[3]</cite>"
+                },
+                icon: "📱",
+                isNew: true,
+                isLatest: true
+            },
+            {
+                id: 3,
+                name: "iPhone 17 Pro",
+                category: "iPhone",
+                generation: 17,
+                variant: "Pro",
+                year: 2025,
+                status: "已发布",
+                price: "价格待定",
+                description: "采用创新的铝合金与玻璃拼接背板设计，配备横向排列的大矩阵镜头模组，影像系统全面升级。<cite>[7]</cite>",
+                specs: {
+                    "芯片": "A19 Pro",
+                    "显示屏": "6.3英寸 Super Retina XDR (ProMotion)",
+                    "前置相机": "Center Stage (最高1800万像素)",
+                    "后置相机": "三摄均为4800万像素<cite>[7]</cite>",
+                    "内存": "12GB (预计)<cite>[7]</cite>",
+                    "热管理": "微孔道复合VC均热板<cite>[3]</cite>"
+                },
+                icon: "📱",
+                isNew: true,
+                isLatest: true
+            },
+            {
+                id: 4,
+                name: "iPhone 17 Pro Max",
+                category: "iPhone",
+                generation: 17,
+                variant: "Pro Max",
+                year: 2025,
+                status: "已发布",
+                price: "价格待定",
+                description: "旗舰型号，拥有系列中最大的屏幕和最顶级的影像配置，性能与设计全面突破。",
+                specs: {
+                    "芯片": "A19 Pro",
+                    "屏幕": "系列中最大尺寸",
+                    "设计": "半铝半玻璃拼接背板",
+                    "相机系统": "最顶级的影像配置",
+                    "内存": "12GB (预计)",
+                    "电池续航": "进一步提升"
+                },
+                icon: "📱",
+                isNew: true,
+                isLatest: true
+            },
+
+            // ====== MacBook Pro - M5 系列 (即将发布) ======
+            {
+                id: 5,
+                name: "MacBook Pro 14",
+                category: "MacBook",
+                generation: "M5",
+                variant: "Pro",
+                year: 2025,
+                status: "即将发布",
+                price: "价格待定",
+                description: "搭载 M5 Pro 或 M5 Max 芯片，采用台积电 SoIC 封装技术优化散热，外观延续现款设计。<cite>[2][6]</cite>",
+                specs: {
+                    "芯片": "M5 Pro / M5 Max",
+                    "尺寸": "14英寸",
+                    "技术": "台积电SoIC-mH 2.5D封装<cite>[2]</cite>",
+                    "设计": "沿用现款外观<cite>[2][6]</cite>",
+                    "散热": "CPU/GPU分离设计以优化<cite>[2]</cite>",
+                    "预计发布时间": "2025年末-2026年初<cite>[2][6]</cite>"
+                },
+                icon: "💻",
+                isUpcoming: true
+            },
+            {
+                id: 6,
+                name: "MacBook Pro 16",
+                category: "MacBook",
+                generation: "M5",
+                variant: "Max",
+                year: 2025,
+                status: "即将发布",
+                price: "价格待定",
+                description: "大屏性能旗舰，搭载 M5 Max 芯片，为专业用户提供极致性能。",
+                specs: {
+                    "芯片": "M5 Max",
+                    "尺寸": "16英寸",
+                    "技术": "台积电SoIC-mH 2.5D封装",
+                    "设计": "沿用现款外观",
+                    "散热": "CPU/GPU分离设计以优化",
+                    "预计发布时间": "2025年末-2026年初<cite>[2][6]</cite>"
+                },
+                icon: "💻",
+                isUpcoming: true
+            },
+
+            // ====== MacBook Pro - M6 系列 (未来) ======
+            {
+                id: 7,
+                name: "MacBook Pro 14",
+                category: "MacBook",
+                generation: "M6",
+                variant: "Pro",
+                year: 2026,
+                status: "规划中",
+                price: "价格待定",
+                description: "重大改款，配备 OLED 显示屏，机身更薄，可能首次内置蜂窝网络模块。<cite>[2][6]</cite>",
+                specs: {
+                    "芯片": "M6 Pro / M6 Max",
+                    "屏幕": "OLED 显示屏<cite>[2][6]</cite>",
+                    "设计": "更薄的机身<cite>[2][6]</cite>",
+                    "网络": "可能内置蜂窝网络<cite>[2][6]</cite>",
+                    "工艺": "台积电6nm工艺制造的M6系列芯片<cite>[6]</cite>",
+                    "预计发布时间": "2026年末<cite>[2][6]</cite>"
+                },
+                icon: "💻",
+                isUpcoming: true,
+                isFuture: true
+            },
+            {
+                id: 8,
+                name: "MacBook Pro 16",
+                category: "MacBook",
+                generation: "M6",
+                variant: "Max",
+                year: 2026,
+                status: "规划中",
+                price: "价格待定",
+                description: "未来旗舰，OLED屏幕与M6 Max芯片的结合，重新定义专业笔记本。",
+                specs: {
+                    "芯片": "M6 Max",
+                    "屏幕": "OLED 显示屏",
+                    "设计": "更薄的机身",
+                    "网络": "可能内置蜂窝网络",
+                    "工艺": "台积电6nm工艺制造的M6系列芯片<cite>[6]</cite>",
+                    "预计发布时间": "2026年末<cite>[2][6]</cite>"
+                },
+                icon: "💻",
+                isUpcoming: true,
+                isFuture: true
+            },
+
+            // ====== 其他 Mac 产品 ======
+            {
+                id: 9,
+                name: "Mac mini",
+                category: "Mac",
+                generation: "M5",
+                variant: "Pro",
+                year: 2025,
+                status: "开发中",
+                price: "价格待定",
+                description: "正在开发 M5 Pro 版本，性能将迎来升级。<cite>[2]</cite>",
+                specs: {
+                    "芯片": "M5 Pro (开发中)<cite>[2]</cite>",
+                    "型号标识符": "J873s<cite>[2]</cite>",
+                    "现款型号": "J773s (M4 Pro)<cite>[2]</cite>"
+                },
+                icon: "🖥️",
+                isUpcoming: true
+            },
+            {
+                id: 10,
+                name: "iMac",
+                category: "Mac",
+                generation: "M5",
+                variant: "标准版",
+                year: 2025,
+                status: "开发中",
+                price: "价格待定",
+                description: "疑似 M5 升级版正在开发中，性能和功能将更上一层楼。<cite>[2]</cite>",
+                specs: {
+                    "芯片": "M5 (预计)",
+                    "型号标识符": "J833ct (疑似)<cite>[2]</cite>",
+                    "现款型号": "J433 (M3)<cite>[2]</cite>"
+                },
+                icon: "🖥️",
+                isUpcoming: true
+            },
+            {
+                id: 11,
+                name: "Mac Studio",
+                category: "Mac",
+                generation: "未知",
+                variant: "高端",
+                year: 2026,
+                status: "规划中",
+                price: "价格待定",
+                description: "包括两款配置，有可能搭载超越 M3 Ultra 的新芯片。<cite>[2]</cite>",
+                specs: {
+                    "芯片": "超越 M3 Ultra 的新芯片<cite>[2]</cite>",
+                    "型号标识符": "J775c / J775d<cite>[2]</cite>",
+                    "预计发布时间": "2026年<cite>[2]</cite>"
+                },
+                icon: "🖥️",
+                isUpcoming: true,
+                isFuture: true
+            },
+
+            // ====== 其他产品 ======
+            {
+                id: 12,
+                name: "Apple Watch Series 11",
+                category: "Watch",
+                generation: "Series 11",
+                variant: "标准版",
+                year: 2025,
+                status: "预计2025发布",
+                price: "价格待定",
+                description: "下一代Apple Watch，预计将带来健康监测和性能的新提升。",
+                specs: {
+                    "芯片": "新一代S系列芯片",
+                    "健康功能": "预计新增健康监测",
+                    "系统": "watchOS 后续版本"
+                },
+                icon: "⌚",
+                isUpcoming: true
+            },
+            {
+                id: 13,
+                name: "AirPods Pro 3",
+                category: "AirPods",
+                generation: "第3代",
+                variant: "Pro",
+                year: 2025,
+                status: "预计2025发布",
+                price: "价格待定",
+                description: "下一代主动降噪耳机，预计在音质和降噪上进一步升级。",
+                specs: {
+                    "降噪": "主动降噪升级",
+                    "音质": "音质表现提升",
+                    "连接": "蓝牙技术升级"
+                },
+                icon: "🎧",
+                isUpcoming: true
+            }
+        ];
+
+        let currentCategory = 'all';
+        let favorites = JSON.parse(localStorage.getItem('appleFavorites')) || [];
+
+        // 显示产品
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            if (productsToShow.length === 0) {
+                grid.innerHTML = '<div style="text-align: center; padding: 50px; opacity: 0.7; font-size: 1.1rem;">没有找到相关产品</div>';
+                return;
+            }
+
+            productsToShow.forEach((product, index) => {
+                const isFavorite = favorites.includes(product.id);
+                const card = document.createElement('div');
+                card.className = `product-card ${product.isLatest ? 'latest' : ''} ${product.isFuture ? 'future' : ''}`;
+                card.style.animationDelay = `${index * 0.1}s`;
+
+                // 根据状态设置徽章颜色
+                let badgeColor = '#8E8E93'; // 默认灰色
+                if (product.status === '已发布') badgeColor = '#4CD964'; // 绿色
+                else if (product.status === '即将发布') badgeColor = '#007AFF'; // 蓝色
+                else if (product.status === '开发中') badgeColor = '#FF9500'; // 橙色
+                else if (product.status === '规划中') badgeColor = '#FF3B30'; // 红色
+
+                card.innerHTML = `
+                    ${product.isLatest ? '<div class="latest-badge">🆕 2025 最新发布</div>' : ''}
+                    ${(product.isUpcoming && !product.isLatest) ? '<div class="latest-badge" style="background: linear-gradient(45deg, #007AFF, #5856D6);">🚀 即将到来</div>' : ''}
+                    ${product.isFuture ? '<div class="latest-badge" style="background: linear-gradient(45deg, #FF2D55, #BF5AF2);">🔮 未来规划</div>' : ''}
+
+                    <div class="product-header">
+                        <div style="display: flex; align-items: center;">
+                            <div class="product-icon">${product.icon}</div>
+                            <div>
+                                <div class="product-name">${product.name}</div>
+                                <div class="product-meta">${product.generation}${product.category === 'Watch' ? '' : (product.category === 'MacBook' ? '芯片' : '代')} · ${product.variant} · ${product.year}</div>
+                            </div>
+                        </div>
+                        <div class="product-badge" style="background: ${badgeColor}">${product.status}</div>
+                    </div>
+
+                    <div class="product-desc">${product.description}</div>
+
+                    <div class="product-specs">
+                        ${Object.entries(product.specs).map(([key, value]) => `
+                            <div class="spec-item">
+                                <span>${key}：</span>
+                                <span class="spec-value">${value}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="product-footer">
+                        <div class="product-price">${product.price}</div>
+                        <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})">
+                            ${isFavorite ? '❤️' : '🤍'}
+                        </button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // 搜索功能
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.querySelector('.search-btn');
+
+            const performSearch = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                let filteredProducts = products;
+
+                if (currentCategory !== 'all') {
+                    filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
+                }
+
+                if (searchTerm) {
+                    filteredProducts = filteredProducts.filter(product =>
+                        product.name.toLowerCase().includes(searchTerm) ||
+                        product.description.toLowerCase().includes(searchTerm) ||
+                        product.variant.toLowerCase().includes(searchTerm) ||
+                        product.generation.toString().toLowerCase().includes(searchTerm) ||
+                        Object.values(product.specs).some(spec =>
+                            spec.toString().toLowerCase().includes(searchTerm)
+                        )
+                    );
+                }
+
+                displayProducts(filteredProducts);
+            };
+
+            searchInput.addEventListener('input', performSearch);
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
+
+        // 分类筛选
+        function filterProducts(category) {
+            currentCategory = category;
+
+            // 更新按钮状态
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 执行筛选
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            let filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
+
+            if (searchTerm) {
+                filteredProducts = filteredProducts.filter(product =>
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            displayProducts(filteredProducts);
+        }
+
+        // 显示最新产品
+        function showLatest() {
+            const latestProducts = products.filter(p => p.isLatest);
+            displayProducts(latestProducts);
+
+            // 更新按钮状态
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+
+        // 显示即将发布的产品
+        function showUpcoming() {
+            const upcomingProducts = products.filter(p => p.isUpcoming);
+            displayProducts(upcomingProducts);
+
+            // 更新按钮状态
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+
+        // 只看最新产品
+        function showOnlyLatest() {
+            showLatest();
+        }
+
+        // 排序功能
+        function sortProducts(type) {
+            let sortedProducts = [...products];
+
+            if (type === 'year') {
+                sortedProducts.sort((a, b) => b.year - a.year);
+            } else if (type === 'name') {
+                sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            if (currentCategory !== 'all') {
+                sortedProducts = sortedProducts.filter(p => p.category === currentCategory);
+            }
+
+            displayProducts(sortedProducts);
+        }
+
+        // 收藏功能
+        function toggleFavorite(productId) {
+            const index = favorites.indexOf(productId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(productId);
+            }
+            localStorage.setItem('appleFavorites', JSON.stringify(favorites));
+            filterProducts(currentCategory); // 重新渲染以更新收藏状态
+        }
+
+        // 显示收藏产品
+        function showFavorites() {
+            const favoriteProducts = products.filter(p => favorites.includes(p.id));
+            displayProducts(favoriteProducts);
+
+            // 更新按钮状态
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+
+        // 人性化功能
+        function toggleDarkMode() {
+            const isDark = document.body.style.background.includes('#0a0a0a');
+            document.body.style.background = isDark 
+                ? 'linear-gradient(135deg, #f5f5f7, #ffffff)' 
+                : 'linear-gradient(135deg, #0a0a0a, #1a1a1a, #2d1a36)';
+        }
+
+        function resetFavorites() {
+            if (confirm('确定要清空所有收藏吗？')) {
+                favorites = [];
+                localStorage.setItem('appleFavorites', JSON.stringify(favorites));
+                filterProducts(currentCategory);
+            }
+        }
+
+        function exportData() {
+            const allData = {
+                products: products,
+                exportTime: new Date().toLocaleString('zh-CN')
+            };
+            const dataStr = JSON.stringify(allData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'apple_products_full_data.json';
+            link.click();
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            displayProducts(products);
+            setupSearch();
+        });
+    </script>
+</body>
+</html>
